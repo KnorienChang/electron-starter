@@ -1,0 +1,29 @@
+{
+  "name": "kc-polaris",
+  "private": true,
+  "version": "0.0.0",
+  "main": "dist/main/index.cjs",
+  "scripts": {
+    "dev": "node scripts/watch.mjs",
+    "prebuild": "vue-tsc --noEmit --p packages/renderer/tsconfig.json && node scripts/build.mjs",
+    "build": "electron-builder -mw"
+  },
+  "env": {
+    "VITE_DEV_SERVER_HOST": "127.0.0.1",
+    "VITE_DEV_SERVER_PORT": 3344
+  },
+  "dependencies": {
+    "vue": "^3.2.25"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^2.3.1",
+    "concurrently": "^7.1.0",
+    "electron": "^18.0.4",
+    "electron-builder": "^23.0.3",
+    "typescript": "^4.5.4",
+    "vite": "^2.9.5",
+    "vite-plugin-electron": "^0.4.3",
+    "vite-plugin-resolve": "^2.0.4",
+    "vue-tsc": "^0.34.7"
+  }
+}
