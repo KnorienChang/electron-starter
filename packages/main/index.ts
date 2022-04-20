@@ -1,6 +1,7 @@
 import { app, BrowserWindow, shell } from 'electron'
 import { release } from 'os'
-import { join } from 'path'
+import { join, resolve } from 'path'
+import { session } from 'electron'
 
 // Disable GPU Acceleration for Windows 7
 if (release().startsWith('6.1')) app.disableHardwareAcceleration()
@@ -34,6 +35,14 @@ async function createWindow() {
 
     win.loadURL(url)
     win.webContents.openDevTools()
+
+    try {
+      const uri = resolve(__dirname, "../../extensions/vuejs-devtools")
+      session.defaultSession.loadExtension(uri, { allowFileAccess: true })
+    } catch (e) {
+      console.log(e);
+      
+    }
   }
 
   // Test active push message to Renderer-process
